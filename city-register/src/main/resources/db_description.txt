@@ -1,0 +1,6 @@
+1. District
+2. Street
+3. Address - district, street, building, extension, apartment
+4. Person -  surname, last name, patronymic, passport(series/number/issue date),
+   birthday certificate(number/issue date)
+5. Relation of person and it's address - Person, Address, date range, registration type

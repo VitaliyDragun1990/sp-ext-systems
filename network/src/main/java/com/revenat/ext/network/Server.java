@@ -45,21 +45,39 @@ public class Server {
             try (Socket socket = clientSocket;
                  BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
-                System.out.println(format("%s started execution", handlerName));
+//                System.out.println(format("%s started execution", handlerName));
 
-                StringBuilder response = new StringBuilder("Hello, ");
-                String userName = br.readLine();
-                System.out.println(format("%s got string:%s", handlerName, userName));
-                Thread.sleep(2000);
+                String request = br.readLine();
+                final String[] lines = request.split("\\s+");
+                String command = lines[0];
+                String userName = lines[1];
+                System.out.println(format("%s got command:%s", handlerName, command));
+                System.out.println(format("%s got username:%s", handlerName, userName));
 
-                response.append(userName);
-                bw.write(response.toString());
+                String response = buildResponse(command, userName);
+                bw.write(response);
+
                 bw.newLine();
                 bw.flush();
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 e.printStackTrace(System.out);
             } finally {
-                System.out.println(format("%s finished execution", handlerName));
+//                System.out.println(format("%s finished execution", handlerName));
+            }
+        }
+
+        private String buildResponse(String command, String username) {
+            switch (command) {
+                case "HELLO":
+                    return "Hello, " + username;
+                case "MORNING":
+                    return "Morning, " + username;
+                case "DAY":
+                    return "Day, " + username;
+                case "EVENING":
+                    return "Evening, " + username;
+                default:
+                    return "Hi, " + username;
             }
         }
     }

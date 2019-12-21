@@ -1,4 +1,8 @@
-package com.revenat.ext.network;
+package com.revenat.ext.network.client;
+
+import com.revenat.ext.network.server.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,11 +13,13 @@ import java.time.LocalDateTime;
  */
 public class Client {
 
-    public static void main(String[] args) throws IOException {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
+
+    public static void main(String[] args) {
         sendRequest();
     }
 
-    private static void sendRequest() throws IOException {
+    private static void sendRequest() {
         for (int i = 0; i < 5; i++) {
             new SimpleClient(i).start();
         }
@@ -29,11 +35,12 @@ public class Client {
 
         private SimpleClient(int cmdIdx) {
             this.cmdIdx = cmdIdx;
+            setName("client-" + (cmdIdx + 1));
         }
 
         @Override
         public void run() {
-//            System.out.println("Started:" + LocalDateTime.now());
+            LOGGER.debug("Started:{}", LocalDateTime.now());
             try (Socket socket = new Socket(Server.HOST, Server.PORT);
                  BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                  BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
@@ -46,11 +53,11 @@ public class Client {
                 bw.flush();
 
                 final String response = br.readLine();
-                System.out.println("Client got string:" + response);
+                LOGGER.info("Client got string:{}", response);
             } catch (IOException e) {
-                e.printStackTrace(System.out);
+                LOGGER.error("Error while talking with server:", e);
             } finally {
-//                System.out.println("Finished:" + LocalDateTime.now());
+                LOGGER.debug("Finished:{}", LocalDateTime.now());
             }
         }
     }

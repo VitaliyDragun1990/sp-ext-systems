@@ -4,6 +4,8 @@ import com.revenat.ext.cityregister.dao.PersonCheckerDao;
 import com.revenat.ext.cityregister.dao.exception.PersonCheckerException;
 import com.revenat.ext.cityregister.domain.PersonRequest;
 import com.revenat.ext.cityregister.domain.PersonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,16 @@ import java.time.LocalDate;
 
 @WebServlet(name ="CheckPersonServlet", urlPatterns = "/checkPerson")
 public class CheckPersonServlet extends HttpServlet {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CheckPersonServlet.class);
+
+    private PersonCheckerDao dao;
+
+    @Override
+    public void init() {
+        LOGGER.info("SERVLET is created");
+        dao = new PersonCheckerDao();
+    }
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +44,6 @@ public class CheckPersonServlet extends HttpServlet {
         request.setApartment("121");
 
         try {
-            PersonCheckerDao dao = new PersonCheckerDao();
             final PersonResponse response = dao.checkPerson(request);
             if (response.isRegistered()) {
                 resp.getWriter().write("Registered");

@@ -14,12 +14,12 @@ public class SimpleSocket {
 
     @Test
     void simpleSocketTest() throws IOException {
-        Socket socket = new Socket("java-course.ru", 80);
+        Socket socket = new Socket("localhost", 8080);
 
         final InputStream is = socket.getInputStream();
         final OutputStream os = socket.getOutputStream();
 
-        String command = "GET /sitemap.xml HTTP/1.1\r\nHost:java-course.ru\r\n\r\n";
+        String command = "GET / HTTP/1.1\r\nHost:java-course.ru\r\n\r\n";
         os.write(command.getBytes());
         os.flush();
 

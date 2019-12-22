@@ -27,16 +27,8 @@ public class PersonCheckerDao {
 
     public PersonResponse checkPerson(final PersonRequest request) throws PersonCheckerException {
         String sql = SQL_REQUEST;
-        if (request.getExtension().isPresent()) {
-            sql += "AND upper(a.extension) = upper(?) ";
-        } else {
-            sql += "AND a.extension IS NULL ";
-        }
-        if (request.getApartment().isPresent()) {
-            sql += "AND upper(a.apartment) = upper(?) ";
-        } else {
-            sql += "AND a.apartment IS NULL ";
-        }
+        sql += request.getExtension().isPresent() ? "AND upper(a.extension) = upper(?) " : "AND a.extension IS NULL ";
+        sql += request.getApartment().isPresent() ? "AND upper(a.apartment) = upper(?) " : "AND a.apartment IS NULL ";
 
         try (final Connection conn = getConnection();
              final PreparedStatement ps = conn.prepareStatement(sql)) {

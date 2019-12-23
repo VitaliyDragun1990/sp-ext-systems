@@ -1,5 +1,6 @@
 package com.revenat.ext.cityregister.dao;
 
+import com.revenat.ext.cityregister.config.ConnectionBuilder;
 import com.revenat.ext.cityregister.dao.exception.PersonCheckerException;
 import com.revenat.ext.cityregister.domain.PersonRequest;
 import com.revenat.ext.cityregister.domain.PersonResponse;
@@ -16,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("a person checker dao")
 class PersonCheckerDaoTest {
 
+    private final ConnectionBuilder connectionBuilder = new DirectConnectionBuilder();
+
     @Test
     void shouldCheckPersonWithExtensionAndApartmentViaDataProvidedInTheRequest() throws PersonCheckerException {
         PersonRequest request = new PersonRequest();
@@ -28,7 +31,7 @@ class PersonCheckerDaoTest {
         request.setExtension("2");
         request.setApartment("121");
 
-        PersonCheckerDao dao = new PersonCheckerDao();
+        PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
         final PersonResponse response = dao.checkPerson(request);
 
         assertTrue(response.isRegistered());
@@ -45,7 +48,7 @@ class PersonCheckerDaoTest {
         request.setStringCode(1);
         request.setBuilding("5");
 
-        PersonCheckerDao dao = new PersonCheckerDao();
+        PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
         final PersonResponse response = dao.checkPerson(request);
 
         assertTrue(response.isRegistered());

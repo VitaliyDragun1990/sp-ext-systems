@@ -1,10 +1,13 @@
 package com.revenat.ext.cityregister.dao;
 
+import com.revenat.ext.cityregister.config.ConnectionBuilder;
 import com.revenat.ext.cityregister.dao.exception.PersonCheckerException;
 import com.revenat.ext.cityregister.domain.PersonRequest;
 import com.revenat.ext.cityregister.domain.PersonResponse;
 
 import java.sql.*;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * @author Vitaliy Dragun
@@ -24,6 +27,12 @@ public class PersonCheckerDao {
     "AND p.date_of_birth = ? " +
     "AND a.street_code = ? " +
     "AND upper(a.building) = upper(?) ";
+
+    private final com.revenat.ext.cityregister.config.ConnectionBuilder connectionBuilder;
+
+    public PersonCheckerDao(final ConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = requireNonNull(connectionBuilder);
+    }
 
     public PersonResponse checkPerson(final PersonRequest request) throws PersonCheckerException {
         String sql = SQL_REQUEST;
@@ -61,6 +70,6 @@ public class PersonCheckerDao {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://192.168.99.100:5432/city_register", "postgres", "19900225");
+        return connectionBuilder.getConnection();
     }
 }

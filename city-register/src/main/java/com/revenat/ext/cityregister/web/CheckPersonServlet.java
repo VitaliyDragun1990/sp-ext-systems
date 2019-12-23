@@ -1,5 +1,6 @@
 package com.revenat.ext.cityregister.web;
 
+import com.revenat.ext.cityregister.config.PoolConnectionBuilder;
 import com.revenat.ext.cityregister.dao.PersonCheckerDao;
 import com.revenat.ext.cityregister.dao.exception.PersonCheckerException;
 import com.revenat.ext.cityregister.domain.PersonRequest;
@@ -25,15 +26,16 @@ public class CheckPersonServlet extends HttpServlet {
     @Override
     public void init() {
         LOGGER.info("SERVLET is created");
-        dao = new PersonCheckerDao();
+        dao = new PersonCheckerDao(new PoolConnectionBuilder());
     }
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
-        String surname = req.getParameter("surname");
-        PersonRequest request = new PersonRequest();
+        final String surname = req.getParameter("surname");
+
+        final PersonRequest request = new PersonRequest();
         request.setSurName(surname);
         request.setGivenName("Павел");
         request.setPatronymic("Николаевич");
@@ -50,7 +52,7 @@ public class CheckPersonServlet extends HttpServlet {
             } else {
                 resp.getWriter().write("Not registered");
             }
-        } catch (PersonCheckerException e) {
+        } catch (final PersonCheckerException e) {
             resp.getWriter().write("Internal server error. Try again later.");
         }
     }

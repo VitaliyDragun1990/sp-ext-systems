@@ -26,7 +26,7 @@ class PersonCheckerDaoTest {
         request.setGivenName("Павел");
         request.setPatronymic("Николаевич");
         request.setDateOfBirth(LocalDate.of(1995, 3, 18));
-        request.setStringCode(1);
+        request.setStreetCode(1);
         request.setBuilding("10");
         request.setExtension("2");
         request.setApartment("121");
@@ -45,7 +45,7 @@ class PersonCheckerDaoTest {
         request.setGivenName("Ирина");
         request.setPatronymic("Петровна");
         request.setDateOfBirth(LocalDate.of(1997, 8, 21));
-        request.setStringCode(1);
+        request.setStreetCode(1);
         request.setBuilding("5");
 
         PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);

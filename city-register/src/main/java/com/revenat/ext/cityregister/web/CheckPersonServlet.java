@@ -15,11 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name ="CheckPersonServlet", urlPatterns = "/checkPerson")
 public class CheckPersonServlet extends HttpServlet {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckPersonServlet.class);
+
+    private static final DateTimeFormatter DATE_TIME_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private PersonCheckerDao dao;
 
@@ -33,17 +36,15 @@ public class CheckPersonServlet extends HttpServlet {
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
 
-        final String surname = req.getParameter("surname");
-
         final PersonRequest request = new PersonRequest();
-        request.setSurName(surname);
-        request.setGivenName("Павел");
-        request.setPatronymic("Николаевич");
-        request.setDateOfBirth(LocalDate.of(1995, 3, 18));
-        request.setStringCode(1);
-        request.setBuilding("10");
-        request.setExtension("2");
-        request.setApartment("121");
+        request.setSurName(req.getParameter("surname"));
+        request.setGivenName(req.getParameter("givenname"));
+        request.setPatronymic(req.getParameter("patronymic"));
+        request.setDateOfBirth(LocalDate.parse(req.getParameter("dateOfBirth"), DATE_TIME_PATTERN));
+        request.setStreetCode(Integer.parseInt(req.getParameter("streetCode")));
+        request.setBuilding(req.getParameter("building"));
+        request.setExtension(req.getParameter("extension"));
+        request.setApartment(req.getParameter("apartment"));
 
         try {
             final PersonResponse response = dao.checkPerson(request);

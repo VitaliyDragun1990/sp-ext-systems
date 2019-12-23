@@ -47,7 +47,7 @@ public class PersonCheckerDao {
             ps.setString(counter++, request.getGivenName());
             ps.setString(counter++, request.getPatronymic());
             ps.setDate(counter++, Date.valueOf(request.getDateOfBirth()));
-            ps.setInt(counter++, request.getStringCode());
+            ps.setInt(counter++, request.getStreetCode());
             ps.setString(counter++, request.getBuilding());
             if (request.getExtension().isPresent()) {
                 ps.setString(counter++, request.getExtension().get());

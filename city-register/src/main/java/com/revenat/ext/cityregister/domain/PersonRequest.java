@@ -16,7 +16,7 @@ public class PersonRequest {
 
     private LocalDate dateOfBirth;
 
-    private Integer stringCode;
+    private Integer streetCode;
 
     private String building;
 
@@ -56,12 +56,12 @@ public class PersonRequest {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Integer getStringCode() {
-        return stringCode;
+    public Integer getStreetCode() {
+        return streetCode;
     }
 
-    public void setStringCode(Integer stringCode) {
-        this.stringCode = stringCode;
+    public void setStreetCode(Integer streetCode) {
+        this.streetCode = streetCode;
     }
 
     public String getBuilding() {

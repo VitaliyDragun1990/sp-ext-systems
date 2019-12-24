@@ -55,6 +55,7 @@ public class CheckPersonServlet extends HttpServlet {
             }
         } catch (final PersonCheckerException e) {
             resp.getWriter().write("Internal server error. Try again later.");
+            LOGGER.error(e.getMessage());
         }
     }
 }

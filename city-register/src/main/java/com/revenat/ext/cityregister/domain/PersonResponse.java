@@ -5,11 +5,14 @@ package com.revenat.ext.cityregister.domain;
  */
 public final class PersonResponse {
 
-    private final boolean registered;
+    private boolean registered;
 
-    private final boolean temporal;
+    private boolean temporal;
 
-    private PersonResponse(boolean registered, boolean temporal) {
+    private PersonResponse() {
+    }
+
+    public PersonResponse(boolean registered, boolean temporal) {
         this.registered = registered;
         this.temporal = temporal;
     }
@@ -30,7 +33,15 @@ public final class PersonResponse {
         return registered;
     }
 
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
+    }
+
     public boolean isTemporal() {
         return temporal;
+    }
+
+    public void setTemporal(boolean temporal) {
+        this.temporal = temporal;
     }
 }

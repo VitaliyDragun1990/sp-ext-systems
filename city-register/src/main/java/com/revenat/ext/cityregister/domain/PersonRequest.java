@@ -1,12 +1,12 @@
 package com.revenat.ext.cityregister.domain;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
-import java.util.Optional;
 
 /**
  * @author Vitaliy Dragun
  */
-public class PersonRequest {
+public final class PersonRequest {
 
     private String surName;
 
@@ -14,6 +14,7 @@ public class PersonRequest {
 
     private String patronymic;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate dateOfBirth;
 
     private Integer streetCode;
@@ -28,7 +29,7 @@ public class PersonRequest {
         return surName;
     }
 
-    public void setSurName(String surName) {
+    public void setSurName(final String surName) {
         this.surName = surName;
     }
 
@@ -36,7 +37,7 @@ public class PersonRequest {
         return givenName;
     }
 
-    public void setGivenName(String givenName) {
+    public void setGivenName(final String givenName) {
         this.givenName = givenName;
     }
 
@@ -44,7 +45,7 @@ public class PersonRequest {
         return patronymic;
     }
 
-    public void setPatronymic(String patronymic) {
+    public void setPatronymic(final String patronymic) {
         this.patronymic = patronymic;
     }
 
@@ -52,7 +53,7 @@ public class PersonRequest {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(final LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -60,7 +61,7 @@ public class PersonRequest {
         return streetCode;
     }
 
-    public void setStreetCode(Integer streetCode) {
+    public void setStreetCode(final Integer streetCode) {
         this.streetCode = streetCode;
     }
 
@@ -68,23 +69,45 @@ public class PersonRequest {
         return building;
     }
 
-    public void setBuilding(String building) {
+    public void setBuilding(final String building) {
         this.building = building;
     }
 
-    public Optional<String> getExtension() {
-        return Optional.ofNullable(extension);
+    public String getExtension() {
+        return extension;
     }
 
-    public void setExtension(String extension) {
+    public void setExtension(final String extension) {
         this.extension = extension;
     }
 
-    public Optional<String> getApartment() {
-        return Optional.ofNullable(apartment);
+    public String getApartment() {
+        return apartment;
     }
 
-    public void setApartment(String apartment) {
+    public void setApartment(final String apartment) {
         this.apartment = apartment;
+    }
+
+    public boolean isExtensionPresent() {
+        return extension != null;
+    }
+
+    public boolean isApartmentPresent() {
+        return apartment != null;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonRequest{" +
+                "surName='" + surName + '\'' +
+                ", givenName='" + givenName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", streetCode=" + streetCode +
+                ", building='" + building + '\'' +
+                ", extension='" + extension + '\'' +
+                ", apartment='" + apartment + '\'' +
+                '}';
     }
 }

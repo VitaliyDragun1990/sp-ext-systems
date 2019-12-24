@@ -12,7 +12,7 @@ public final class PersonResponse {
     private PersonResponse() {
     }
 
-    public PersonResponse(boolean registered, boolean temporal) {
+    public PersonResponse(final boolean registered, final boolean temporal) {
         this.registered = registered;
         this.temporal = temporal;
     }
@@ -33,7 +33,7 @@ public final class PersonResponse {
         return registered;
     }
 
-    public void setRegistered(boolean registered) {
+    public void setRegistered(final boolean registered) {
         this.registered = registered;
     }
 
@@ -41,7 +41,15 @@ public final class PersonResponse {
         return temporal;
     }
 
-    public void setTemporal(boolean temporal) {
+    public void setTemporal(final boolean temporal) {
         this.temporal = temporal;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonResponse{" +
+                "registered=" + registered +
+                ", temporal=" + temporal +
+                '}';
     }
 }

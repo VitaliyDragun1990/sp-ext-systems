@@ -40,7 +40,6 @@ public class CheckPersonService {
     @Produces(MediaType.APPLICATION_JSON)
     public PersonResponse checkPerson(final PersonRequest request) throws PersonCheckerException {
         LOGGER.info("Got request:\n{}", request);
-
         return dao.checkPerson(request);
     }
 }

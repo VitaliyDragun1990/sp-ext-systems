@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayNameGeneration(ReplaceCamelCase.class)
 @DisplayName("a person checker dao")
@@ -21,7 +22,7 @@ class PersonCheckerDaoTest {
 
     @Test
     void shouldCheckPersonWithExtensionAndApartmentViaDataProvidedInTheRequest() throws PersonCheckerException {
-        PersonRequest request = new PersonRequest();
+        final PersonRequest request = new PersonRequest();
         request.setSurName("Васильев");
         request.setGivenName("Павел");
         request.setPatronymic("Николаевич");
@@ -31,7 +32,7 @@ class PersonCheckerDaoTest {
         request.setExtension("2");
         request.setApartment("121");
 
-        PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
+        final PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
         final PersonResponse response = dao.checkPerson(request);
 
         assertTrue(response.isRegistered());
@@ -40,15 +41,15 @@ class PersonCheckerDaoTest {
 
     @Test
     void shouldCheckPersonWithoutExtensionAndApartmentViaDataProvidedInTheRequest() throws PersonCheckerException {
-        PersonRequest request = new PersonRequest();
-        request.setSurName("Васильева");
-        request.setGivenName("Ирина");
-        request.setPatronymic("Петровна");
-        request.setDateOfBirth(LocalDate.of(1997, 8, 21));
+        final PersonRequest request = new PersonRequest();
+        request.setSurName("Васильев");
+        request.setGivenName("Николай");
+        request.setPatronymic("Юриевич");
+        request.setDateOfBirth(LocalDate.of(1971, 10, 10));
         request.setStreetCode(1);
         request.setBuilding("5");
 
-        PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
+        final PersonCheckerDao dao = new PersonCheckerDao(connectionBuilder);
         final PersonResponse response = dao.checkPerson(request);
 
         assertTrue(response.isRegistered());

@@ -1,0 +1,17 @@
+Use Cases:
+
+1. User - apply for marriage registration
+2. Employee - fill in application for marriage registration
+3. Employee - endorse application
+4. Employee - make record concerning marriage registration
+5. Employee - list of applications for marriage registration
+6. Employee - list of certificates for marriage registration
+
+7. User - apply birth certificate
+8. Employee - endorse application
+9. Employee - make record concerning birth certificate
+10. Employee - list of applications concerning receiving birth certificate
+11. Employee - list of birth certificates
+
+12. External System - marriage status verification
+13. External System - birth certificate verification

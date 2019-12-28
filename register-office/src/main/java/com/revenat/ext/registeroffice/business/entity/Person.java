@@ -1,23 +1,34 @@
 package com.revenat.ext.registeroffice.business.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 /**
  * @author Vitaliy Dragun
  */
+@Table(name = "ro_person")
+@Entity
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
     private Long personId;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "lastName")
     private String lastName;
 
+    @Column(name = "patronymic")
     private String patronymic;
 
+    @Column(name = "date_birth")
     private LocalDate dateOfBirth;
 
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Passport> passports;
 
     public Long getPersonId() {

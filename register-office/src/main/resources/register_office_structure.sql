@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS ro_person;
 
 CREATE TABLE ro_person (
     person_id SERIAL,
+    sex SMALLINT NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     patronymic VARCHAR(100),

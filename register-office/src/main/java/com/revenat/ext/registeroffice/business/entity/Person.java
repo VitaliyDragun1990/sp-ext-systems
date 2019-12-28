@@ -11,7 +11,26 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
+@NamedQuery(
+        name = Person.FIND_ALL_PEOPLE,
+        // Get all people with all their passports and birth certificate, if any, in one request
+        query = "SELECT p FROM Person p " +
+                "LEFT JOIN FETCH p.passports ps " +
+                "LEFT JOIN FETCH p.birthCertificate bc"
+)
+@NamedQuery(
+        name = Person.FIND_PERSON_BY_ID,
+        // Get person with all their passports and birth certificate, if any, in one request
+        query = "SELECT p FROM Person p " +
+                "LEFT JOIN FETCH p.passports ps " +
+                "LEFT JOIN FETCH p.birthCertificate bc " +
+                "WHERE p.personId = :personId"
+)
 public class Person {
+
+    public static final String FIND_ALL_PEOPLE = "Person.findAllPeople";
+
+    public static final String FIND_PERSON_BY_ID = "Person.findById";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,3 +111,4 @@ public class Person {
         this.passports = passports;
     }
 }
+

@@ -20,8 +20,20 @@ public class JPAPersonDao {
         entityManager = factory.createEntityManager();
     }
 
-    public List<Person> findPeople() {
-        final TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p", Person.class);
+    public List<Person> findAllPeople() {
+        final TypedQuery<Person> query = entityManager.createNamedQuery(
+                Person.FIND_ALL_PEOPLE,
+                Person.class
+        );
         return query.getResultList();
+    }
+
+    public Person getById(Long personId) {
+        final TypedQuery<Person> query = entityManager.createNamedQuery(
+                Person.FIND_PERSON_BY_ID,
+                Person.class
+        );
+        query.setParameter("personId", personId);
+        return query.getSingleResult();
     }
 }

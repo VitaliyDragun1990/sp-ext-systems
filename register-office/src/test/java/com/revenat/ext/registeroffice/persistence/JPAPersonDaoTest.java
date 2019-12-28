@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("a person dao")
 class JPAPersonDaoTest {
@@ -18,10 +19,11 @@ class JPAPersonDaoTest {
     void shouldFindAllPeople() {
         JPAPersonDao dao = new JPAPersonDao();
 
-        final List<Person> people = dao.findPeople();
+        final List<Person> people = dao.findAllPeople();
 
         assertThat(people, hasSize(3));
         people.forEach(person -> {
+            System.out.println();
             System.out.println("First name: " + person.getFirstName());
             System.out.println("Name of the class: " + person.getClass().getSimpleName());
             System.out.println("Number of passports: " +  person.getPassports().size());
@@ -35,6 +37,16 @@ class JPAPersonDaoTest {
                 System.out.println("Female children birth certificates count: " + female.getBirthCertificates().size());
                 System.out.println("Female marriage certificates count: " + female.getMarriageCertificates().size());
             }
+            System.out.println();
         });
+    }
+
+    @Test
+    void shouldGetPersonById() {
+        JPAPersonDao dao = new JPAPersonDao();
+
+        final Person person = dao.getById(1L);
+
+        assertNotNull(person, "Failed to find person by id");
     }
 }

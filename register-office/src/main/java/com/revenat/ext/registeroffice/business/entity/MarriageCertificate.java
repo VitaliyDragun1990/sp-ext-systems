@@ -1,31 +1,45 @@
 package com.revenat.ext.registeroffice.business.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * @author Vitaliy Dragun
  */
+@Table(name = "ro_marriage_certificate")
+@Entity
 public class MarriageCertificate {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "marriage_certificate_id")
     private Long marriageCertificateId;
 
+    @Column(name = "certificate_number")
     private String number;
 
+    @Column(name = "issue_date")
     private LocalDate issueDate;
 
-    private boolean active;
-
-    private LocalDate endDate;
-
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "husband_id")
     private PersonMale husband;
 
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "wife_id")
     private PersonFemale wife;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
     public Long getMarriageCertificateId() {
         return marriageCertificateId;
     }
 
-    public void setMarriageCertificateId(Long marriageCertificateId) {
+    public void setMarriageCertificateId(final Long marriageCertificateId) {
         this.marriageCertificateId = marriageCertificateId;
     }
 
@@ -33,7 +47,7 @@ public class MarriageCertificate {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(final String number) {
         this.number = number;
     }
 
@@ -41,7 +55,7 @@ public class MarriageCertificate {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(final LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
@@ -49,7 +63,7 @@ public class MarriageCertificate {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(final boolean active) {
         this.active = active;
     }
 
@@ -57,7 +71,7 @@ public class MarriageCertificate {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(final LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -65,7 +79,7 @@ public class MarriageCertificate {
         return husband;
     }
 
-    public void setHusband(PersonMale husband) {
+    public void setHusband(final PersonMale husband) {
         this.husband = husband;
     }
 
@@ -73,7 +87,7 @@ public class MarriageCertificate {
         return wife;
     }
 
-    public void setWife(PersonFemale wife) {
+    public void setWife(final PersonFemale wife) {
         this.wife = wife;
     }
 }

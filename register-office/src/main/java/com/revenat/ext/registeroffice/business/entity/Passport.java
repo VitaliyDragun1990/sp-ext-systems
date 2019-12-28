@@ -35,7 +35,7 @@ public class Passport {
         return passportId;
     }
 
-    public void setPassportId(Long passportId) {
+    public void setPassportId(final Long passportId) {
         this.passportId = passportId;
     }
 
@@ -43,7 +43,7 @@ public class Passport {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(final Person person) {
         this.person = person;
     }
 
@@ -51,7 +51,7 @@ public class Passport {
         return series;
     }
 
-    public void setSeries(String series) {
+    public void setSeries(final String series) {
         this.series = series;
     }
 
@@ -59,7 +59,7 @@ public class Passport {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(final String number) {
         this.number = number;
     }
 
@@ -67,7 +67,7 @@ public class Passport {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(final LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
@@ -75,7 +75,7 @@ public class Passport {
         return issueDepartment;
     }
 
-    public void setIssueDepartment(String issueDepartment) {
+    public void setIssueDepartment(final String issueDepartment) {
         this.issueDepartment = issueDepartment;
     }
 }

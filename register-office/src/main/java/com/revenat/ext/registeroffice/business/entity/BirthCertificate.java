@@ -1,29 +1,43 @@
 package com.revenat.ext.registeroffice.business.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * @author Vitaliy Dragun
  */
+@Table(name = "ro_birth_certificate")
+@Entity
 public class BirthCertificate {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "birth_certificate_id")
     private Long birthCertificateId;
 
+    @Column(name = "certificate_number")
     private String number;
 
+    @Column(name = "issue_date")
     private LocalDate issueDate;
 
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id")
     private Person person;
 
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "father_id")
     private PersonMale father;
 
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_id")
     private PersonFemale mother;
 
     public Long getBirthCertificateId() {
         return birthCertificateId;
     }
 
-    public void setBirthCertificateId(Long birthCertificateId) {
+    public void setBirthCertificateId(final Long birthCertificateId) {
         this.birthCertificateId = birthCertificateId;
     }
 
@@ -31,7 +45,7 @@ public class BirthCertificate {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(final String number) {
         this.number = number;
     }
 
@@ -39,7 +53,7 @@ public class BirthCertificate {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(final LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
@@ -47,7 +61,7 @@ public class BirthCertificate {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(final Person person) {
         this.person = person;
     }
 
@@ -55,7 +69,7 @@ public class BirthCertificate {
         return father;
     }
 
-    public void setFather(PersonMale father) {
+    public void setFather(final PersonMale father) {
         this.father = father;
     }
 
@@ -63,7 +77,7 @@ public class BirthCertificate {
         return mother;
     }
 
-    public void setMother(PersonFemale mother) {
+    public void setMother(final PersonFemale mother) {
         this.mother = mother;
     }
 }

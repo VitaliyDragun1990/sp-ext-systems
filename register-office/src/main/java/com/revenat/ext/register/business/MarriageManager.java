@@ -6,17 +6,20 @@ import com.revenat.ext.register.business.model.MarriageResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_SINGLETON;
 
 /**
  * Use case controller (interactor)
  * @author Vitaliy Dragun
  */
 @Service
+@Scope(SCOPE_SINGLETON)
 public class MarriageManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageManager.class);

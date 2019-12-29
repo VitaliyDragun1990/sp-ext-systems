@@ -10,4 +10,9 @@ VALUES
 
 INSERT INTO ro_passport (person_id, series, number, issue_date, issue_department)
 VALUES
-    (1, '40000', '123456', '2018-04-10', 'Passport department');
+    (1, '40000', '123456', '2018-04-10', 'Passport department'),
+    (2, '50000', '654321', '2017-06-15', 'Passport department');
+
+INSERT INTO ro_marriage_certificate(certificate_number, issue_date, husband_id, wife_id, active)
+VALUES
+    ('123Marriage', '2018-10-01', 2, 1, true);

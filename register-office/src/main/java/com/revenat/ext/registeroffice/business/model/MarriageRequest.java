@@ -167,4 +167,26 @@ public class MarriageRequest implements Serializable {
     public void setMarriageCertificateDate(final LocalDate marriageCertificateDate) {
         this.marriageCertificateDate = marriageCertificateDate;
     }
+
+    @Override
+    public String toString() {
+        return "MarriageRequest{" +
+                "husbandSureName='" + husbandSureName + '\'' +
+                ", husbandGivenName='" + husbandGivenName + '\'' +
+                ", husbandPatronymic='" + husbandPatronymic + '\'' +
+                ", husbandDateOfBirth=" + husbandDateOfBirth +
+                ", husbandPassportSeries='" + husbandPassportSeries + '\'' +
+                ", husbandPassportNumber='" + husbandPassportNumber + '\'' +
+                ", husbandPassportIssueDate=" + husbandPassportIssueDate +
+                ", wifeSureName='" + wifeSureName + '\'' +
+                ", wifeGivenName='" + wifeGivenName + '\'' +
+                ", wifePatronymic='" + wifePatronymic + '\'' +
+                ", wifeDateOfBirth=" + wifeDateOfBirth +
+                ", wifePassportSeries='" + wifePassportSeries + '\'' +
+                ", wifePassportNumber='" + wifePassportNumber + '\'' +
+                ", wifePassportIssueDate=" + wifePassportIssueDate +
+                ", marriageCertificateNumber='" + marriageCertificateNumber + '\'' +
+                ", marriageCertificateDate=" + marriageCertificateDate +
+                '}';
+    }
 }

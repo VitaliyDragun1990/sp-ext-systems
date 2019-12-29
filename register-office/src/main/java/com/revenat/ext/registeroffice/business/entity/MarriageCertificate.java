@@ -8,7 +8,30 @@ import java.time.LocalDate;
  */
 @Table(name = "ro_marriage_certificate")
 @Entity
+@NamedQuery(
+        name = MarriageCertificate.FIND_CERTIFICATE,
+        query = "SELECT m FROM MarriageCertificate m " +
+                "INNER JOIN m.husband h " +
+                "INNER JOIN m.wife w " +
+                "INNER JOIN m.husband.passports hp " +
+                "INNER JOIN m.wife.passports wp " +
+                "WHERE " +
+                "h.firstName = :hFirstName AND " +
+                "h.lastName = :hLastName AND " +
+                "h.patronymic = :hPatronymic AND " +
+                "hp.series = :hPassportSeries AND " +
+                "hp.number = :hPassportNumber AND " +
+                "w.firstName = :wFirstName AND " +
+                "w.lastName = :wLastName AND " +
+                "w.patronymic = :wPatronymic AND " +
+                "wp.series = :wPassportSeries AND " +
+                "wp.number = :wPassportNumber AND " +
+                "m.number = :certificateNumber AND " +
+                "m.issueDate = :certificateIssueDate"
+)
 public class MarriageCertificate {
+
+    public static final String FIND_CERTIFICATE = "MarriageCertificate.findCertificate";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

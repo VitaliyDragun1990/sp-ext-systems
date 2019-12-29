@@ -1,8 +1,8 @@
-package com.revenat.ext.registeroffice;
+package com.revenat.ext.register;
 
-import com.revenat.ext.registeroffice.business.model.MarriageRequest;
-import com.revenat.ext.registeroffice.business.model.MarriageResponse;
-import com.revenat.ext.registeroffice.integration.MarriageResource;
+import com.revenat.ext.register.business.model.MarriageRequest;
+import com.revenat.ext.register.business.model.MarriageResponse;
+import com.revenat.ext.register.integration.MarriageResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;

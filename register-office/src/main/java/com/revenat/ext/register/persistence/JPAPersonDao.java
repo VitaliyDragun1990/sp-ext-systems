@@ -1,6 +1,10 @@
-package com.revenat.ext.registeroffice.persistence;
+package com.revenat.ext.register.persistence;
 
-import com.revenat.ext.registeroffice.business.entity.Person;
+import com.revenat.ext.register.business.entity.Person;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +15,13 @@ import java.util.List;
 /**
  * @author Vitaliy Dragun
  */
+@Repository
 public class JPAPersonDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JPAPersonDao.class);
+
+    @Value("${test.value}")
+    private String testValue;
 
     private EntityManager entityManager;
 
@@ -21,6 +31,7 @@ public class JPAPersonDao {
     }
 
     public List<Person> findAllPeople() {
+        LOGGER.info("test value: {}", testValue);
         final TypedQuery<Person> query = entityManager.createNamedQuery(
                 Person.FIND_ALL_PEOPLE,
                 Person.class

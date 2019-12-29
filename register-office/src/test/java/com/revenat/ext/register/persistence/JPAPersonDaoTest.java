@@ -1,8 +1,8 @@
-package com.revenat.ext.registeroffice.persistence;
+package com.revenat.ext.register.persistence;
 
-import com.revenat.ext.registeroffice.business.entity.Person;
-import com.revenat.ext.registeroffice.business.entity.PersonFemale;
-import com.revenat.ext.registeroffice.business.entity.PersonMale;
+import com.revenat.ext.register.business.entity.Person;
+import com.revenat.ext.register.business.entity.PersonFemale;
+import com.revenat.ext.register.business.entity.PersonMale;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -6,15 +6,6 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="marriageDao" class="com.revenat.ext.registeroffice.persistence.JPAMarriageDao">
-    </bean>
-
-    <bean id="marriageManager" class="com.revenat.ext.registeroffice.business.MarriageManager">
-        <constructor-arg index="0" ref="marriageDao"/>
-    </bean>
-
-    <bean id="marriageResource" class="com.revenat.ext.registeroffice.integration.MarriageResource">
-        <constructor-arg index="0" ref="marriageManager"/>
-    </bean>
+    <context:component-scan base-package="com.revenat.ext.register"/>
 
 </beans>

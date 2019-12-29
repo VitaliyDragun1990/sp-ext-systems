@@ -1,14 +1,14 @@
-package com.revenat.ext.registeroffice.persistence;
+package com.revenat.ext.register.persistence;
 
-import com.revenat.ext.registeroffice.business.MarriageDao;
-import com.revenat.ext.registeroffice.business.entity.MarriageCertificate;
-import com.revenat.ext.registeroffice.business.model.MarriageRequest;
+import com.revenat.ext.register.business.MarriageDao;
+import com.revenat.ext.register.business.entity.MarriageCertificate;
+import com.revenat.ext.register.business.model.MarriageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
@@ -16,15 +16,16 @@ import java.util.Optional;
 /**
  * @author Vitaliy Dragun
  */
+@Repository
 public class JPAMarriageDao implements MarriageDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JPAMarriageDao.class);
 
     private final EntityManager entityManager;
 
-    public JPAMarriageDao() {
-        final EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
-        entityManager = factory.createEntityManager();
+    @Autowired
+    public JPAMarriageDao(final EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     @Override

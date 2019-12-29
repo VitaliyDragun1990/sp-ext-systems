@@ -1,4 +1,4 @@
-package com.revenat.ext.registeroffice.business.entity;
+package com.revenat.ext.register.business.entity;
 
 import javax.persistence.*;
 import java.util.List;

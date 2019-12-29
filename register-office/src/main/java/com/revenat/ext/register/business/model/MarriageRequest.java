@@ -1,4 +1,4 @@
-package com.revenat.ext.registeroffice.business.model;
+package com.revenat.ext.register.business.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;

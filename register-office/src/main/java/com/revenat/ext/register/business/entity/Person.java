@@ -26,7 +26,7 @@ import java.util.List;
                 "LEFT JOIN FETCH p.birthCertificate bc " +
                 "WHERE p.personId = :personId"
 )
-public class Person {
+public abstract class Person {
 
     public static final String FIND_ALL_PEOPLE = "Person.findAllPeople";
 

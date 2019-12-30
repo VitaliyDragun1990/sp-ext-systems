@@ -1,5 +1,8 @@
 package com.revenat.ext.register;
 
+import com.revenat.ext.register.business.MarriageManager;
+import com.revenat.ext.register.business.entity.Person;
+import com.revenat.ext.register.business.entity.PersonMale;
 import com.revenat.ext.register.business.model.MarriageRequest;
 import com.revenat.ext.register.business.model.MarriageResponse;
 import com.revenat.ext.register.integration.MarriageResource;
@@ -24,10 +27,23 @@ public class MainApplication {
 
         final MarriageResponse response = marriageResource.findMarriageCertificate(buildMarriageRequest());
         LOGGER.info("Marriage certificate present: {}", response.isPresent());
+
+        final MarriageManager marriageManager = context.getBean(MarriageManager.class);
+        final Long personId = marriageManager.registerPerson(buildPerson());
+        LOGGER.info("Saved new person with personId:{}", personId);
+    }
+
+    private static Person buildPerson() {
+        final Person person = new PersonMale();
+        person.setFirstName("John");
+        person.setLastName("Snow");
+        person.setPatronymic("Edward");
+        person.setDateOfBirth(LocalDate.of(1992, 5, 5));
+        return person;
     }
 
     private static MarriageRequest buildMarriageRequest() {
-        MarriageRequest request = new MarriageRequest();
+        final MarriageRequest request = new MarriageRequest();
 
         request.setHusbandSureName("Олег");
         request.setHusbandGivenName("Васильев");

@@ -6,8 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,15 +22,16 @@ import java.util.Properties;
  */
 @Configuration
 @PropertySource("classpath:/register.properties")
+@EnableTransactionManagement
 public class Config {
 
     @Autowired
     private Environment env;
 
-    @Bean
-    public EntityManager entityManager(@Autowired final EntityManagerFactory factory) {
-        return factory.createEntityManager();
-    }
+//    @Bean
+//    public EntityManager entityManager(@Autowired final EntityManagerFactory factory) {
+//        return factory.createEntityManager();
+//    }
 
     @Bean
     public DataSource dataSource() {
@@ -47,6 +51,13 @@ public class Config {
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setJpaProperties(jpaProperties());
         return factoryBean;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(@Autowired EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 
     private Properties jpaProperties() {

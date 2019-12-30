@@ -1,6 +1,7 @@
 package com.revenat.ext.register.business;
 
 import com.revenat.ext.register.business.entity.MarriageCertificate;
+import com.revenat.ext.register.business.entity.Person;
 import com.revenat.ext.register.business.model.MarriageRequest;
 import com.revenat.ext.register.business.model.MarriageResponse;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -26,15 +28,24 @@ public class MarriageManager {
 
     private final MarriageDao marriageDao;
 
+    private final PersonDao personDao;
+
     @Autowired
-    public MarriageManager(final MarriageDao marriageDao) {
+    public MarriageManager(final MarriageDao marriageDao, final PersonDao personDao) {
         this.marriageDao = requireNonNull(marriageDao);
+        this.personDao = requireNonNull(personDao);
     }
 
+    @Transactional(readOnly = true)
     public MarriageResponse findMarriageCertificate(final MarriageRequest request) {
         LOGGER.info("Got MarriageRequest: {}", request);
         final Optional<MarriageCertificate> certificateOptional = marriageDao.findMarriageCertificate(request);
 
         return new MarriageResponse(certificateOptional.isPresent());
+    }
+
+    @Transactional
+    public Long registerPerson(Person person) {
+        return personDao.addPerson(person);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -12,7 +13,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -23,15 +23,11 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:/register.properties")
 @EnableTransactionManagement
+@EnableJpaRepositories({"com.revenat.ext.register.persistence"})
 public class Config {
 
     @Autowired
     private Environment env;
-
-//    @Bean
-//    public EntityManager entityManager(@Autowired final EntityManagerFactory factory) {
-//        return factory.createEntityManager();
-//    }
 
     @Bean
     public DataSource dataSource() {
@@ -44,7 +40,7 @@ public class Config {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired final DataSource dataSource) {
         final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setPackagesToScan("com.revenat.ext.register.business.entity");
@@ -54,8 +50,8 @@ public class Config {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(@Autowired EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
+    public PlatformTransactionManager transactionManager(@Autowired final EntityManagerFactory entityManagerFactory) {
+        final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }

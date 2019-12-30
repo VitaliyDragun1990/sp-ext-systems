@@ -28,9 +28,9 @@ public class MainApplication {
         final MarriageResponse response = marriageResource.findMarriageCertificate(buildMarriageRequest());
         LOGGER.info("Marriage certificate present: {}", response.isPresent());
 
-        final MarriageManager marriageManager = context.getBean(MarriageManager.class);
-        final Long personId = marriageManager.registerPerson(buildPerson());
-        LOGGER.info("Saved new person with personId:{}", personId);
+//        final MarriageManager marriageManager = context.getBean(MarriageManager.class);
+//        final Long personId = marriageManager.registerPerson(buildPerson());
+//        LOGGER.info("Saved new person with personId:{}", personId);
     }
 
     private static Person buildPerson() {

@@ -1,14 +1,15 @@
 package com.revenat.ext.register.business;
 
 import com.revenat.ext.register.business.entity.MarriageCertificate;
-import com.revenat.ext.register.business.model.MarriageRequest;
 
-import java.util.Optional;
+import java.util.List;
 
 /**
  * @author Vitaliy Dragun
  */
-public interface MarriageDao {
+public interface MarriageDao extends MarriageCertificateFinder {
 
-    Optional<MarriageCertificate> findMarriageCertificate(MarriageRequest request);
+    MarriageCertificate save(MarriageCertificate certificate);
+
+    List<MarriageCertificate> findAll();
 }

@@ -1,4 +1,4 @@
-package com.revenat.ext.register;
+package com.revenat.ext.register.business;
 
 /**
  * @author Vitaliy Dragun

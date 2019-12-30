@@ -1,12 +1,11 @@
 package com.revenat.ext.register.persistence;
 
-import com.revenat.ext.register.DaoException;
+import com.revenat.ext.register.business.DaoException;
 import com.revenat.ext.register.business.PersonDao;
 import com.revenat.ext.register.business.entity.Person;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;

@@ -1,11 +1,10 @@
 package com.revenat.ext.register.persistence;
 
-import com.revenat.ext.register.business.MarriageDao;
+import com.revenat.ext.register.business.MarriageCertificateFinder;
 import com.revenat.ext.register.business.entity.MarriageCertificate;
 import com.revenat.ext.register.business.model.MarriageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,10 +15,9 @@ import java.util.Optional;
 /**
  * @author Vitaliy Dragun
  */
-@Repository("jpaMarriageDao")
-public class JPAMarriageDao implements MarriageDao {
+public class SpringDataMarriageDaoImpl implements MarriageCertificateFinder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JPAMarriageDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringDataMarriageDaoImpl.class);
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -48,15 +46,5 @@ public class JPAMarriageDao implements MarriageDao {
         } else {
             return Optional.ofNullable(result.get(0));
         }
-    }
-
-    @Override
-    public MarriageCertificate save(MarriageCertificate certificate) {
-        throw new UnsupportedOperationException("not implemented yet");
-    }
-
-    @Override
-    public List<MarriageCertificate> findAll() {
-        throw new UnsupportedOperationException("not implemented yet");
     }
 }

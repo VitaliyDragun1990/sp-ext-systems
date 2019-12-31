@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -33,10 +34,13 @@ public class MarriageResource {
         this.marriageManager = requireNonNull(marriageManager);
     }
 
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public MarriageResponse findMarriageCertificate(/*final MarriageRequest request*/) {
-        LOGGER.info("Got MarriageRequest: "/*, request*/);
-        return marriageManager.findMarriageCertificate(/*request*/null);
+    @Consumes(MediaType.APPLICATION_JSON)
+    public MarriageResponse findMarriageCertificate(final MarriageRequest request) {
+        LOGGER.info("Got request: {}", request);
+        final MarriageResponse response = marriageManager.findMarriageCertificate(request);
+        LOGGER.info("Send response: {}", response);
+        return response;
     }
 }

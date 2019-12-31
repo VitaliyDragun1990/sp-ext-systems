@@ -1,0 +1,18 @@
+{
+  "husbandSureName": "Олег",
+  "husbandGivenName": "Васильев",
+  "husbandPatronymic": "Петрович",
+  "husbandDateOfBirth": "24.03.1998",
+  "husbandPassportSeries": "50000",
+  "husbandPassportNumber": "654321",
+  "husbandPassportIssueDate": "15.06.2017",
+  "wifeSureName": "Елена",
+  "wifeGivenName": "Васильева",
+  "wifePatronymic": "Сергеевна",
+  "wifeDateOfBirth": "16.10.1997",
+  "wifePassportSeries": "40000",
+  "wifePassportNumber": "123456",
+  "wifePassportIssueDate": "10.04.2018",
+  "marriageCertificateNumber": "123Marriage",
+  "marriageCertificateDate": "01.10.2018"
+}

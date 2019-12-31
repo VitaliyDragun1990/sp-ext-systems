@@ -23,4 +23,11 @@ public class MarriageResponse implements Serializable {
     public void setPresent(boolean present) {
         this.present = present;
     }
+
+    @Override
+    public String toString() {
+        return "MarriageResponse{" +
+                "present=" + present +
+                '}';
+    }
 }

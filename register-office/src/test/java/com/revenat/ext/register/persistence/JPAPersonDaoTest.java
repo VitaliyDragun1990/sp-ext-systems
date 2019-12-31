@@ -14,10 +14,10 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("a person dao")
+@Disabled("won't work without spring-related testing features")
 class JPAPersonDaoTest {
 
     @Test
-    @Disabled
     void shouldFindAllPeople() {
         JPAPersonDao dao = new JPAPersonDao();
 
@@ -44,7 +44,6 @@ class JPAPersonDaoTest {
     }
 
     @Test
-    @Disabled
     void shouldGetPersonById() {
         JPAPersonDao dao = new JPAPersonDao();
 

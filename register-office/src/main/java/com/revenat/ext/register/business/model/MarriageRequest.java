@@ -1,5 +1,6 @@
 package com.revenat.ext.register.business.model;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -14,12 +15,14 @@ public class MarriageRequest implements Serializable {
 
     private String husbandPatronymic;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate husbandDateOfBirth;
 
     private String husbandPassportSeries;
 
     private String husbandPassportNumber;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate husbandPassportIssueDate;
 
     private String wifeSureName;
@@ -28,16 +31,19 @@ public class MarriageRequest implements Serializable {
 
     private String wifePatronymic;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate wifeDateOfBirth;
 
     private String wifePassportSeries;
 
     private String wifePassportNumber;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate wifePassportIssueDate;
 
     private String marriageCertificateNumber;
 
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate marriageCertificateDate;
 
     public String getHusbandSureName() {

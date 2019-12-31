@@ -25,7 +25,7 @@ public class MainApplication {
 
         final MarriageResource marriageResource = context.getBean("marriageResource", MarriageResource.class);
 
-        final MarriageResponse response = marriageResource.findMarriageCertificate(buildMarriageRequest());
+        final MarriageResponse response = marriageResource.findMarriageCertificate(/*buildMarriageRequest()*/);
         LOGGER.info("Marriage certificate present: {}", response.isPresent());
 
 //        final MarriageManager marriageManager = context.getBean(MarriageManager.class);

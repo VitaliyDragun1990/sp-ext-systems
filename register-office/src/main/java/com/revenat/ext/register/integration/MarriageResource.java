@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -16,6 +21,7 @@ import static java.util.Objects.requireNonNull;
  * @author Vitaliy Dragun
  */
 @Service("marriageResource")
+@Path("/mc")
 public class MarriageResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MarriageResource.class);
@@ -27,8 +33,10 @@ public class MarriageResource {
         this.marriageManager = requireNonNull(marriageManager);
     }
 
-    public MarriageResponse findMarriageCertificate(final MarriageRequest request) {
-        LOGGER.info("Got MarriageRequest: {}", request);
-        return marriageManager.findMarriageCertificate(request);
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public MarriageResponse findMarriageCertificate(/*final MarriageRequest request*/) {
+        LOGGER.info("Got MarriageRequest: "/*, request*/);
+        return marriageManager.findMarriageCertificate(/*request*/null);
     }
 }

@@ -3,6 +3,7 @@ package com.revenat.ext.register.persistence;
 import com.revenat.ext.register.business.entity.Person;
 import com.revenat.ext.register.business.entity.PersonFemale;
 import com.revenat.ext.register.business.entity.PersonMale;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class JPAPersonDaoTest {
 
     @Test
+    @Disabled
     void shouldFindAllPeople() {
         JPAPersonDao dao = new JPAPersonDao();
 
@@ -42,6 +44,7 @@ class JPAPersonDaoTest {
     }
 
     @Test
+    @Disabled
     void shouldGetPersonById() {
         JPAPersonDao dao = new JPAPersonDao();
 

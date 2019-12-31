@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
@@ -44,56 +43,57 @@ public class MarriageManager {
 
     @Transactional(readOnly = false)
     public MarriageResponse findMarriageCertificate(final MarriageRequest request) {
-//        LOGGER.info("Got MarriageRequest: {}", request);
-//        final Optional<MarriageCertificate> certificateOptional = marriageDao.findMarriageCertificate(request);
+        LOGGER.info("Got MarriageRequest: {}", request);
+        final Optional<MarriageCertificate> certificateOptional = marriageDao.findMarriageCertificate(request);
+
+        return new MarriageResponse(certificateOptional.isPresent());
+//        return new MarriageResponse(true);
+//        final PersonMale husband = buildMale();
+//        registerPerson(husband);
+//        LOGGER.info("Husband saved, id:{}", husband.getPersonId());
+//        final PersonFemale wife = buildFemale();
+//        registerPerson(wife);
+//        LOGGER.info("Wife saved, id:{}", wife.getPersonId());
+//        MarriageCertificate certificate = buildMarriageCertificate(husband, wife);
+//        marriageDao.save(certificate);
+//        LOGGER.info("Marriage Certificate saved, id:{}", certificate.getMarriageCertificateId());
+//        marriageDao.findAll().forEach(c -> LOGGER.info("Found certificate with id:{}",c.getMarriageCertificateId()));
 //
-//        return new MarriageResponse(certificateOptional.isPresent());
-        final PersonMale husband = buildMale();
-        registerPerson(husband);
-        LOGGER.info("Husband saved, id:{}", husband.getPersonId());
-        final PersonFemale wife = buildFemale();
-        registerPerson(wife);
-        LOGGER.info("Wife saved, id:{}", wife.getPersonId());
-        MarriageCertificate certificate = buildMarriageCertificate(husband, wife);
-        marriageDao.save(certificate);
-        LOGGER.info("Marriage Certificate saved, id:{}", certificate.getMarriageCertificateId());
-        marriageDao.findAll().forEach(c -> LOGGER.info("Found certificate with id:{}",c.getMarriageCertificateId()));
-
-        return new MarriageResponse(false);
+//        return new MarriageResponse(false);
     }
 
-    private MarriageCertificate buildMarriageCertificate(PersonMale husband, PersonFemale wife) {
-        MarriageCertificate certificate = new MarriageCertificate();
+//    private MarriageCertificate buildMarriageCertificate(PersonMale husband, PersonFemale wife) {
+//        MarriageCertificate certificate = new MarriageCertificate();
+//
+//        certificate.setHusband(husband);
+//        certificate.setWife(wife);
+//        certificate.setIssueDate(LocalDate.now());
+//        certificate.setNumber("Marriage12345");
+//        certificate.setActive(true);
+//
+//        return certificate;
+//    }
 
-        certificate.setHusband(husband);
-        certificate.setWife(wife);
-        certificate.setIssueDate(LocalDate.now());
-        certificate.setNumber("Marriage12345");
-        certificate.setActive(true);
+//    private static PersonMale buildMale() {
+//        final PersonMale person = new PersonMale();
+//        person.setFirstName("John");
+//        person.setLastName("Snow");
+//        person.setPatronymic("Edward");
+//        person.setDateOfBirth(LocalDate.of(1992, 5, 5));
+//        return person;
+//    }
 
-        return certificate;
-    }
+//    private static PersonFemale buildFemale() {
+//        final PersonFemale person = new PersonFemale();
+//        person.setFirstName("Anna");
+//        person.setLastName("Stark");
+//        person.setPatronymic("Luisa");
+//        person.setDateOfBirth(LocalDate.of(1994, 7, 12));
+//        return person;
+//    }
 
-    private static PersonMale buildMale() {
-        final PersonMale person = new PersonMale();
-        person.setFirstName("John");
-        person.setLastName("Snow");
-        person.setPatronymic("Edward");
-        person.setDateOfBirth(LocalDate.of(1992, 5, 5));
-        return person;
-    }
-
-    private static PersonFemale buildFemale() {
-        final PersonFemale person = new PersonFemale();
-        person.setFirstName("Anna");
-        person.setLastName("Stark");
-        person.setPatronymic("Luisa");
-        person.setDateOfBirth(LocalDate.of(1994, 7, 12));
-        return person;
-    }
-
-    @Transactional
-    public Long registerPerson(final Person person) {
-        return personDao.addPerson(person);
-    }
+//    @Transactional
+//    public Long registerPerson(final Person person) {
+//        return personDao.addPerson(person);
+//    }
 }

@@ -3,10 +3,11 @@ package com.revenat.ext.register.persistence;
 import com.revenat.ext.register.business.entity.Person;
 import com.revenat.ext.register.business.entity.PersonFemale;
 import com.revenat.ext.register.business.entity.PersonMale;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,13 +15,34 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("a person dao")
-@Disabled("won't work without spring-related testing features")
 class JPAPersonDaoTest {
+
+    private static EntityManager entityManager;
+
+    private static EntityManagerFactory factory;
+
+    private JPAPersonDao dao;
+
+    @BeforeAll
+    static void beforeAll() {
+        factory = Persistence.createEntityManagerFactory("persistence");
+        entityManager = factory.createEntityManager();
+    }
+
+    @AfterAll
+    static void afterAll() {
+        entityManager.close();
+        factory.close();
+    }
+
+    @BeforeEach
+    void setUp() {
+        dao = new JPAPersonDao();
+        dao.setEntityManager(entityManager);
+    }
 
     @Test
     void shouldFindAllPeople() {
-        JPAPersonDao dao = new JPAPersonDao();
-
         final List<Person> people = dao.findAllPeople();
 
         assertThat(people, hasSize(3));
@@ -45,8 +67,6 @@ class JPAPersonDaoTest {
 
     @Test
     void shouldGetPersonById() {
-        JPAPersonDao dao = new JPAPersonDao();
-
         final Person person = dao.getById(1L);
 
         assertNotNull(person, "Failed to find person by id");

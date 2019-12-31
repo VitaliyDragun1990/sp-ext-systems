@@ -12,6 +12,8 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * @author Vitaliy Dragun
  */
@@ -19,8 +21,12 @@ public class SpringDataMarriageDaoImpl implements MarriageCertificateFinder {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringDataMarriageDaoImpl.class);
 
-    @PersistenceContext
     private EntityManager entityManager;
+
+    @PersistenceContext
+    void setEntityManager(final EntityManager entityManager) {
+        this.entityManager = requireNonNull(entityManager);
+    }
 
     @Override
     public Optional<MarriageCertificate> findMarriageCertificate(final MarriageRequest request) {

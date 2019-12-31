@@ -16,8 +16,12 @@ import java.util.List;
 @Repository
 public class JPAPersonDao implements PersonDao {
 
-    @PersistenceContext
     private EntityManager entityManager;
+
+    @PersistenceContext
+    void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public List<Person> findAllPeople() {

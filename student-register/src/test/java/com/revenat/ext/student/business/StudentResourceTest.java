@@ -1,5 +1,6 @@
 package com.revenat.ext.student.business;
 
+import com.revenat.ext.student.integration.rest.StudentResource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,17 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:springContext.xml"})
-@DisplayName("a check student service")
-class CheckStudentServiceTest {
+@DisplayName("a student resource")
+class StudentResourceTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CheckStudentServiceTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentResourceTest.class);
 
     @Autowired
-    private CheckStudentService checkStudentService;
+    private StudentResource studentResource;
 
     @Test
     void shouldBeInitialized() {
-        assertNotNull(checkStudentService);
-        LOGGER.debug("CheckStudentService has been successfully initialized");
+        assertNotNull(studentResource);
+        LOGGER.debug("StudentResource has been successfully initialized");
     }
 }

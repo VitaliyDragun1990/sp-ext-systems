@@ -8,6 +8,7 @@ import java.util.List;
  * @author Vitaliy Dragun
  */
 @Table(name = "sr_student")
+@Entity
 public class Student {
 
     @Id

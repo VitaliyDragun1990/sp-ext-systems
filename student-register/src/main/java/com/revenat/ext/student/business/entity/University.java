@@ -12,10 +12,10 @@ public class University {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "university_id")
+    @Column(name = "university_id", nullable = false)
     private Long universityId;
 
-    @Column(name = "university_name")
+    @Column(name = "university_name", nullable = false)
     private String universityName;
 
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "university")

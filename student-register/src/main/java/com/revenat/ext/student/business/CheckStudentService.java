@@ -26,12 +26,12 @@ public class CheckStudentService {
     private final StudentDao studentDao;
 
     @Autowired
-    public CheckStudentService(StudentDao studentDao) {
+    public CheckStudentService(final StudentDao studentDao) {
         this.studentDao = requireNonNull(studentDao);
     }
 
     @Transactional(readOnly = true)
-    public List<StudentResponse> checkStudent(StudentRequest request) {
+    public List<StudentResponse> checkStudent(final StudentRequest request) {
         final Optional<Student> studentOptional = studentDao.findStudent(
                 request.getLastName(),
                 request.getFirstName(),
@@ -45,7 +45,7 @@ public class CheckStudentService {
             LOGGER.info("For request:{} no student info was found", request);
             return List.of();
         } else {
-            Student student = studentOptional.get();
+            final Student student = studentOptional.get();
             LOGGER.info("For request:{} student info was found: {}", request, student);
             return student
                     .getStudentDocuments().stream()

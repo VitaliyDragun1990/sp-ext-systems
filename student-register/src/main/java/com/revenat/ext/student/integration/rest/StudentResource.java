@@ -13,7 +13,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
@@ -31,7 +30,7 @@ public class StudentResource {
     private final CheckStudentService checkStudentService;
 
     @Autowired
-    public StudentResource(CheckStudentService checkStudentService) {
+    public StudentResource(final CheckStudentService checkStudentService) {
         this.checkStudentService = requireNonNull(checkStudentService);
     }
 

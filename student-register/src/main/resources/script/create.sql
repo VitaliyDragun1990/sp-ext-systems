@@ -1,19 +1,13 @@
-DROP TABLE IF EXISTS sr_student_document;
-DROP TABLE IF EXISTS sr_student;
-DROP TABLE IF EXISTS sr_faculty;
-DROP TABLE IF EXISTS sr_university;
-
-
 CREATE TABLE sr_university
 (
-    university_id SERIAL NOT NULL,
+    university_id BIGSERIAL NOT NULL,
     university_name character varying(255) NOT NULL,
     CONSTRAINT sr_university_pkey PRIMARY KEY (university_id)
 );
 
 CREATE TABLE sr_faculty
 (
-    faculty_id SERIAL NOT NULL,
+    faculty_id BIGSERIAL NOT NULL,
     faculty_name character varying(255) NOT NULL,
     university_id bigint NOT NULL,
     CONSTRAINT sr_faculty_pkey PRIMARY KEY (faculty_id),
@@ -23,7 +17,7 @@ CREATE TABLE sr_faculty
 
 CREATE TABLE sr_student
 (
-    student_id SERIAL NOT NULL,
+    student_id BIGSERIAL NOT NULL,
     date_of_birth date NOT NULL,
     first_name character varying(255) NOT NULL,
     last_name character varying(255) NOT NULL,
@@ -36,7 +30,7 @@ CREATE TABLE sr_student
 
 CREATE TABLE sr_student_document
 (
-    document_id SERIAL NOT NULL,
+    document_id BIGSERIAL NOT NULL,
     document_number character varying(255) NOT NULL,
     education_form integer NOT NULL,
     expire_date date NOT NULL,

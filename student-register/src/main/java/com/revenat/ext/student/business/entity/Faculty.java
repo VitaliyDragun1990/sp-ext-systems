@@ -11,14 +11,14 @@ public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "faculty_id")
+    @Column(name = "faculty_id", nullable = false, updatable = false)
     private Long facultyId;
 
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "university_id")
+    @JoinColumn(name = "university_id", nullable = false)
     private University university;
 
-    @Column(name = "faculty_name")
+    @Column(name = "faculty_name", nullable = false)
     private String facultyName;
 
     public Long getFacultyId() {

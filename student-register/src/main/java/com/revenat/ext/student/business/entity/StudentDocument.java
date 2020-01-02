@@ -12,28 +12,28 @@ public class StudentDocument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "document_id")
+    @Column(name = "document_id", nullable = false)
     private Long documentId;
 
-    @Column(name = "document_number")
+    @Column(name = "document_number", nullable = false, unique = true)
     private String documentNumber;
 
-    @Column(name = "issue_date")
+    @Column(name = "issue_date", nullable = false)
     private LocalDate issueDate;
 
-    @Column(name = "expire_date")
+    @Column(name = "expire_date", nullable = false)
     private LocalDate expireDate;
 
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
-    @Column(name = "education_form")
     @Enumerated(EnumType.ORDINAL)
+    @Column(name = "education_form", nullable = false)
     private EducationForm educationForm;
 
     public Long getDocumentId() {

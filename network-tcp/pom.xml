@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <log4j.version>2.11.2</log4j.version>
+        <log4j.version>2.16.0</log4j.version>
         <junit.version>5.5.1</junit.version>
         <hamcrest.version>2.1</hamcrest.version>
         <mockito.version>3.0.0</mockito.version>
